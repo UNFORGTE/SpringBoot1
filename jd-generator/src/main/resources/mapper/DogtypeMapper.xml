@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tedu.jd.jd.mapper.DogtypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.tedu.jd.jd.model.Dogtype">
+        <id column="id" property="id" />
+        <result column="dogtype" property="dogtype" />
+        <result column="from_area" property="fromArea" />
+        <result column="nature" property="nature" />
+        <result column="price" property="price" />
+        <result column="dog_id" property="dogId" />
+        <result column="score" property="score" />
+        <result column="createtime" property="createtime" />
+        <result column="dog_no" property="dogNo" />
+        <result column="img_url" property="imgUrl" />
+        <result column="detail_img" property="detailImg" />
+    </resultMap>
+
+</mapper>

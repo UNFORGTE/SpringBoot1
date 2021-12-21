@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>狗子详情</title>
+</head>
+<style>
+    .all_dog {
+        width: 200px;
+        height: 200px;
+        border: 2px solid black;
+        background-color: #efa308;
+    }
+
+    .one_dog {
+        width: 150px;
+        height: 150px;
+        border: 2px solid red;
+        margin: 0 auto;
+        margin-top: 10%;
+    }
+</style>
+<body>
+<div class="total" >
+    <div class="all_dog" v-for="dog in dogs">
+        <div class="one_dog">
+            <a :href="'/dog_page.html?'+dog.dogId">
+                <img src="images/8.jpg"
+                     width="150" height="150"
+                     alt="狗子图片"
+                     :src="dog.imgUrl">
+
+                </a>
+            <div class="dog_name">
+                <span v-text="dog.dogtype"
+                style="color: chartreuse">狗的名字</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+<!--引入VUE框架-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!--引入axios框架-->
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    let dog_v = new Vue({
+        el: ".total",
+        data: {
+            dogs: []
+        },
+        methods: {
+            loadDog: function () {
+                axios({
+                    method: 'GET',
+                    url: '/show/dogtype/dog_detail'
+                }).then(function (response) {
+                    if (response.data==null){
+                        alert("error");
+                    }else {
+                        dog_v.dogs = response.data;
+                    }
+                })
+            }
+        },
+        created: function () {
+            this.loadDog();
+        }
+    })
+</script>
+</html>

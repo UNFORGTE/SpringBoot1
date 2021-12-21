@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>狗子详情页面</title>
+</head>
+<style>
+    #dog_box {
+        border: 2px solid #db0a0a;
+    }
+</style>
+<body>
+<div id="dog_box">
+    <div class="top">
+        <img src="images/8.jpg" alt="狗子图片"
+             width="200" height="200"
+             :src="page.imgUrl">
+<!--        <p v-text="page.dogtype">狗的名字</p>
+        <p v-text="page.fromArea">狗子来自哪里</p>
+        <p v-text="page.price">狗来的价格</p>
+        <p v-text="page.nature">狗子的天性</p>
+        <p v-text="page.score">狗子综合得分</p>-->
+    </div>
+
+        <!--<span v-text="page.dogtype">狗的名字</span><br>
+        <span v-text="page.fromArea">狗来自哪里</span><br>
+        <span v-text="page.price">狗来自哪里</span><br>
+        <span v-text="page.nature">狗子的天性</span><br>
+        <span v-text="page.score">狗子综合得分</span><br>-->
+</div>
+</body>
+<!--引入VUE框架-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<!--引入axios框架-->
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    let pages_v = new Vue({
+        el: '#dog_box',
+        data: {
+            page: '',
+        },
+        methods: {
+            loadDog: function () {
+                let dog_id = location.search;
+                if (!dog_id) {
+                    alert("狗子id错误");
+                    return;
+                }
+                dog_id = dog_id.substring(1);
+                axios({
+                    url: "/show/dogtype/" + dog_id + "/dog_home",
+                    method: "get"
+                }).then(function (response) {
+                    pages_v.page = response.data;
+                    alert(pages_v.page.dogtype);
+                    console.log(pages_v.page);
+                })
+            }
+        },
+        created: function () {
+            this.loadDog();
+        }
+    })
+</script>
+</html>
